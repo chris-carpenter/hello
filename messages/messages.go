@@ -1,14 +1,18 @@
+// Package messages implements ouput text
 package messages
 
 import (
+	"fmt"
+	"net/http"
+
+	"strings"
 
 	"github.com/chris-carpenter/hello/morestrings"
 	"github.com/google/go-cmp/cmp"
-	"strings"
 )
 
 //Hello prints hello message
-func Hello() string {
+func Hello(w http.ResponseWriter, req *http.Request) {
 	hello := []string{ morestrings.ReverseRunes("!oG ,olleH"), cmp.Diff("Hello World", "Hello Go") }
-	return strings.Join(hello, "\n")
+	fmt.Fprintln(w, strings.Join(hello, "\n"))
 }
