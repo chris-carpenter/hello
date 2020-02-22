@@ -2,17 +2,17 @@
 package messages
 
 import (
-	"fmt"
 	"net/http"
 
 	"strings"
 
 	"github.com/chris-carpenter/hello/morestrings"
 	"github.com/google/go-cmp/cmp"
+	"github.com/gin-gonic/gin"
 )
 
 //Hello prints hello message
-func Hello(w http.ResponseWriter, req *http.Request) {
+func Hello(c *gin.Context) {
 	hello := []string{ morestrings.ReverseRunes("!oG ,olleH"), cmp.Diff("Hello World", "Hello Go") }
-	fmt.Fprintln(w, strings.Join(hello, "\n"))
+	c.String(http.StatusOK, strings.Join(hello, "\n"))
 }

@@ -2,14 +2,18 @@
 package health
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-func Headers(w http.ResponseWriter, req *http.Request) {	
-	for name, headers := range req.Header {
+// Headers shows header
+func Headers(c *gin.Context) {
+	mHeaders := make(map[string]string)
+	for name, headers := range c.Request.Header {
 		for _, h := range headers {
-			fmt.Fprintf(w, "%v: %v\n", name, h)
+			mHeaders[name]=h
 		}
 	}
+	c.JSON(http.StatusOK, mHeaders)
 }
