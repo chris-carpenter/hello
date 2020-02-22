@@ -1,15 +1,14 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/chris-carpenter/hello/messages"
 	"github.com/chris-carpenter/hello/health"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	http.HandleFunc("/hello", messages.Hello)
-	http.HandleFunc("/headers", health.Headers)
-
-	http.ListenAndServe(":8090", nil)
+	router := gin.Default()
+	router.GET("/hello", messages.Hello)
+	router.GET("/headers", health.Headers)
+	router.Run()
 }
