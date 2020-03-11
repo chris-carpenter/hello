@@ -10,5 +10,5 @@ func main() {
 	router := gin.Default()
 	router.GET("/hello", messages.Hello)
 	router.GET("/headers", health.Headers)
-	router.Run()
+	_ = router.Run()
 }
