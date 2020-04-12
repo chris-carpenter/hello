@@ -2,6 +2,7 @@
 package messages
 
 import (
+	"github.com/spf13/viper"
 	"net/http"
 
 	"strings"
@@ -13,6 +14,7 @@ import (
 
 //Hello prints hello message
 func Hello(c *gin.Context) {
-	hello := []string{ morestrings.ReverseRunes("!oG ,olleH"), cmp.Diff("Hello World", "Hello Go") }
+	message := viper.GetString("helloMessage")
+	hello := []string{ morestrings.ReverseRunes(message), cmp.Diff("Hello World", "Hello Go") }
 	c.String(http.StatusOK, strings.Join(hello, "\n"))
 }

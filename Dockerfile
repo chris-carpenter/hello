@@ -19,6 +19,7 @@ RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
 WORKDIR /app
 COPY --from=builder /go/src/app/app .
+COPY application.yml .
 
 EXPOSE 8080
 
