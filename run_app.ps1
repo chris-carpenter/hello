@@ -1,2 +1,2 @@
 docker build -t hello-world .
-docker run -p 8080:8080 -it --rm --name hello-world-container hello-world
+docker run -p 8080:8080 -it --rm -e "HELLO_BATTLE_CLIENT_ID=$env:HELLO_BATTLE_CLIENT_ID" -e "HELLO_BATTLE_CLIENT_SECRET=$env:HELLO_BATTLE_CLIENT_SECRET" --name hello-world-container hello-world

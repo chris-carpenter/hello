@@ -10,6 +10,11 @@ type config struct {
 }
 
 func Config() {
+	//environment
+	viper.SetEnvPrefix("hello")
+	viper.BindEnv("battle_client_id")
+	viper.BindEnv("battle_client_secret")
+	//application.yml
 	viper.SetConfigName("application")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("..")

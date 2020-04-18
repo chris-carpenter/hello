@@ -2,6 +2,7 @@
 package messages
 
 import (
+	"encoding/json"
 	"github.com/spf13/viper"
 	"net/http"
 
@@ -15,6 +16,11 @@ import (
 //Hello prints hello message
 func Hello(c *gin.Context) {
 	message := viper.GetString("helloMessage")
-	hello := []string{ morestrings.ReverseRunes(message), cmp.Diff("Hello World", "Hello Go") }
+	settings, err := json.Marshal(viper.AllSettings())
+	if  err !=nil {
+		panic(err)
+	}
+	//id := "battle_client_id: " + string()
+	hello := []string{ morestrings.ReverseRunes(message), cmp.Diff("Hello World", "Hello Go"), string(settings) }
 	c.String(http.StatusOK, strings.Join(hello, "\n"))
 }
